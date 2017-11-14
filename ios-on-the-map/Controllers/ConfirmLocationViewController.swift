@@ -44,6 +44,10 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
         annotation.title = SharedMemory.instance.personalLocation
        
         mapView.addAnnotation(annotation)
+        
+        let span = MKCoordinateSpanMake(5, 5)
+        let region = MKCoordinateRegion(center: coordinates, span: span)
+        self.mapView.setRegion(region, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -66,14 +70,17 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
     @IBAction func finishAddLocation(_ sender: Any) {
         let parseClient = ParseClient()
         parseClient.postPinLocation() { (resp, err) -> Void in
-            let mainQueue = DispatchQueue.main
-            mainQueue.async(execute: {
-    
-                guard err == nil else {
-                    self.showErrorAlert(message: err!, dismissButtonTitle: "OK")
-                    return
-                }
-            })
+            if err != nil {
+                let mainQueue = DispatchQueue.main
+                mainQueue.async(execute: {
+                        self.showErrorAlert(message: err!, dismissButtonTitle: "OK")
+                        return
+                })
+            } else {
+                self.dismiss(animated: true, completion: nil)
+                
+                return
+            }
         }
         self.dismiss(animated: true, completion: nil)
     }
