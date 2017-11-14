@@ -38,9 +38,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 return
             }
         }
-        let storyboard = self.storyboard
-        let loginViewController = storyboard?.instantiateViewController(withIdentifier: "LoginViewController")
-        self.present(loginViewController!, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
            
     }
     

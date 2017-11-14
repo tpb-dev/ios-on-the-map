@@ -27,7 +27,11 @@ class ParseClient : APIClient {
         
         let request = self.makeRequest(method: APIClient.Methods(rawValue: "GET")!, url: getLocationURL, requestBody: nil, params: ["limit": "100"])
         self.sendRequest(request: request){ (resp, err) -> Void in
-            self.processStudents(response: resp!, responseHandler: responseHandler)
+            guard let res = resp else {
+                responseHandler(nil, "Server error")
+                return
+            }
+            self.processStudents(response: res, responseHandler: responseHandler)
         }
     }
     

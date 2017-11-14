@@ -53,7 +53,7 @@ class MapAddViewController: UIViewController {
     
     func geocode(address: String!, mediaURL: String!) {
         
-        findLocationButton.isHidden = false
+        activityIndicatorView.isHidden = false
         activityIndicatorView.startAnimating()
         
         self.geocoder.geocodeAddressString(address) { (placemarks, error) in
@@ -65,8 +65,8 @@ class MapAddViewController: UIViewController {
     
     private func processResponse(withPlacemarks placemarks: [CLPlacemark]?, error: Error?) {
 
-        findLocationButton.isHidden = true
         activityIndicatorView.stopAnimating()
+        activityIndicatorView.isHidden = true
         
         if let error = error {
             print("Unable to Forward Geocode Address (\(error))")
@@ -106,5 +106,27 @@ class MapAddViewController: UIViewController {
     
     @IBAction func cancelButtonClicked(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+        
+        let userInfo = notification.userInfo
+        let keyboardSize = userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue // of CGRect
+        return keyboardSize.cgRectValue.height
+    }
+    
+    @objc func keyboardWillHide(_ notification:Notification) {
+        
+        view.frame.origin.y = 0
+    }
+    
+    @objc func keyboardWillShow(_ notification:Notification) {
+        if mapAddWebsiteTextField.isFirstResponder {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+    }
+    
+    @IBAction func textFieldPrimaryActionTriggered(_ sender: Any) {
+        view.endEditing(true)
     }
 }
