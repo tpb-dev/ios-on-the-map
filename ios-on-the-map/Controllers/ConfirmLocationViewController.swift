@@ -73,7 +73,9 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
             if err != nil {
                 let mainQueue = DispatchQueue.main
                 mainQueue.async(execute: {
+                        print("Before error alert")
                         self.showErrorAlert(message: err!, dismissButtonTitle: "OK")
+                        print("After error alert")
                         return
                 })
             } else {
@@ -81,8 +83,9 @@ class ConfirmLocationViewController: UIViewController, MKMapViewDelegate {
                 
                 return
             }
+            
         }
-        self.dismiss(animated: true, completion: nil)
+        
     }
     
     @IBAction func cancel(_ sender: Any) {
