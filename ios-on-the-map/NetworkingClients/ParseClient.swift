@@ -60,7 +60,7 @@ class ParseClient : APIClient {
         
     }
     
-    func postPinLocation(responseHandler: @escaping (_ allStudents: [ParseStudentModel]?, _ error: String?) -> Void) {
+    func postPinLocation(responseHandler: @escaping (_ response: [String: Any?]?, _ error: String?) -> Void) {
         let requestBody: [String:Any] = ["uniqueKey" : SharedMemory.instance.key,
                                          "firstName" : SharedMemory.instance.firstName,
                                          "lastName" : SharedMemory.instance.lastName,
@@ -84,6 +84,11 @@ class ParseClient : APIClient {
         self.sendRequest(request: request, isUdacity: true){ (resp, err) -> Void in
             if resp != nil {
                 let success = self.addSelfToUsers(resp: resp!)
+                if success == true {
+                    responseHandler(resp, err)
+                } else {
+                    responseHandler(nil, "Error saving self to users")
+                }
             } else {
                 responseHandler(nil, "Post fail for location")
             }

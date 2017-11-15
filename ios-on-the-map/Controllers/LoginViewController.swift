@@ -129,18 +129,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @objc func keyboardWillShow(_ notification:Notification) {
         if passwordField.isFirstResponder {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            loginView.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
     @IBAction func textFieldPrimaryActionTriggered(_ sender: Any) {
-        view.endEditing(true)
+        loginView.endEditing(true)
     }
     
     
     @objc func keyboardWillHide(_ notification:Notification) {
         
-        view.frame.origin.y = 0
+        loginView.frame.origin.y = 0
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

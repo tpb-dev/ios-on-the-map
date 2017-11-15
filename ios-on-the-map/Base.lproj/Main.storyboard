@@ -128,7 +128,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="textFieldPrimaryActionTriggered:" destination="9gq-Sd-mYz" eventType="editingDidEnd" id="YiP-Oy-9XG"/>
+                                    <action selector="textFieldPrimaryActionTriggered:" destination="9gq-Sd-mYz" eventType="primaryActionTriggered" id="iyp-r1-C4b"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MKZ-6g-vPg">
@@ -297,6 +297,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="textFieldPrimaryActionTriggered:" destination="S7i-NP-HHN" eventType="primaryActionTriggered" id="3j8-lz-ewy"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Website URL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="biJ-pW-2py">
                                 <rect key="frame" x="0.0" y="370" width="375" height="30"/>
@@ -304,7 +307,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <action selector="textFieldPrimaryActionTriggered:" destination="S7i-NP-HHN" eventType="editingDidEnd" id="0fR-uI-nxD"/>
+                                    <action selector="textFieldPrimaryActionTriggered:" destination="S7i-NP-HHN" eventType="primaryActionTriggered" id="0KZ-Lj-2vX"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5bH-CC-awA">
